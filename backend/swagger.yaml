@@ -1,0 +1,321 @@
+openapi: 3.0.0
+info:
+  title: API Incidencias Escolares
+  version: 1.0.0
+  description: Documentación de servicios REST para gestión escolar
+servers:
+  - url: http://localhost:5000
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - BearerAuth: []
+tags:
+  - name: Autenticación
+  - name: Usuarios
+  - name: Alumnos
+  - name: Grupos
+  - name: Tipos de reporte
+  - name: Reportes
+paths:
+  /api/login:
+    post:
+      tags: [Autenticación]
+      summary: Login de usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [correo, contraseña]
+              properties:
+                correo: { type: string }
+                contraseña: { type: string }
+      responses:
+        '200': { description: Login exitoso }
+        '401': { description: Credenciales inválidas }
+
+  /api/usuarios:
+    get:
+      tags: [Usuarios]
+      summary: Listar usuarios activos
+      responses:
+        '200': { description: Lista de usuarios }
+    post:
+      tags: [Usuarios]
+      summary: Crear usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [nombres, apellido_paterno, email, rol, contrasena]
+              properties:
+                nombres: { type: string }
+                apellido_paterno: { type: string }
+                apellido_materno: { type: string }
+                email: { type: string }
+                rol: { type: string }
+                contrasena: { type: string }
+      responses:
+        '201': { description: Usuario creado }
+        '409': { description: Correo ya registrado }
+
+  /api/usuarios/{id}:
+    get:
+      tags: [Usuarios]
+      summary: Obtener usuario por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Usuario encontrado }
+        '404': { description: Usuario no encontrado }
+    put:
+      tags: [Usuarios]
+      summary: Actualizar usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombres: { type: string }
+                apellido_paterno: { type: string }
+                apellido_materno: { type: string }
+                rol: { type: string }
+      responses:
+        '200': { description: Usuario actualizado }
+    delete:
+      tags: [Usuarios]
+      summary: Eliminar usuario
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Usuario desactivado }
+
+  /api/alumnos:
+    get:
+      tags: [Alumnos]
+      summary: Listar alumnos
+      responses:
+        '200': { description: Lista de alumnos }
+    post:
+      tags: [Alumnos]
+      summary: Crear alumno
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [matricula, nombres, apellido_paterno, id_grupo]
+              properties:
+                matricula: { type: string }
+                nombres: { type: string }
+                apellido_paterno: { type: string }
+                apellido_materno: { type: string }
+                fecha_nacimiento: { type: string, format: date }
+                id_grupo: { type: integer }
+      responses:
+        '201': { description: Alumno creado }
+
+  /api/alumnos/{id}:
+    get:
+      tags: [Alumnos]
+      summary: Obtener alumno por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Alumno encontrado }
+        '404': { description: Alumno no encontrado }
+    put:
+      tags: [Alumnos]
+      summary: Actualizar alumno
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombres: { type: string }
+                apellido_paterno: { type: string }
+                apellido_materno: { type: string }
+                fecha_nacimiento: { type: string, format: date }
+                id_grupo: { type: integer }
+      responses:
+        '200': { description: Alumno actualizado }
+    delete:
+      tags: [Alumnos]
+      summary: Eliminar alumno
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Alumno eliminado }
+
+  /api/grupos:
+    get:
+      tags: [Grupos]
+      summary: Listar grupos
+      responses:
+        '200': { description: Lista de grupos }
+    post:
+      tags: [Grupos]
+      summary: Crear grupo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [grado, ciclo_escolar]
+              properties:
+                grado: { type: integer }
+                ciclo_escolar: { type: string }
+                id_tutor: { type: integer }
+                descripcion: { type: string }
+      responses:
+        '201': { description: Grupo creado }
+
+  /api/grupos/{id}:
+    get:
+      tags: [Grupos]
+      summary: Obtener grupo por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Grupo encontrado }
+        '404': { description: Grupo no encontrado }
+    put:
+      tags: [Grupos]
+      summary: Actualizar grupo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                grado: { type: integer }
+                ciclo_escolar: { type: string }
+                id_tutor: { type: integer }
+                descripcion: { type: string }
+      responses:
+        '200': { description: Grupo actualizado }
+    delete:
+      tags: [Grupos]
+      summary: Eliminar grupo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Grupo eliminado }
+
+  /api/tipos-reporte:
+    get:
+      tags: [Tipos de reporte]
+      summary: Listar tipos de reporte
+      responses:
+        '200': { description: Lista de tipos }
+    post:
+      tags: [Tipos de reporte]
+      summary: Crear tipo de reporte
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [nombre, gravedad]
+              properties:
+                nombre: { type: string }
+                descripcion: { type: string }
+                gravedad: { type: string, enum: [Leve, Moderada, Grave] }
+      responses:
+        '201': { description: Tipo creado }
+
+  /api/tipos-reporte/{id}:
+    get:
+      tags: [Tipos de reporte]
+      summary: Obtener tipo por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Tipo encontrado }
+        '404': { description: Tipo no encontrado }
+    put:
+      tags: [Tipos de reporte]
+      summary: Actualizar tipo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre: { type: string }
+                descripcion: { type: string }
+                gravedad: { type: string, enum: [Leve, Moderada, Grave] }
+      responses:
+        '200': { description: Tipo actualizado }
+    delete:
+      tags: [Tipos de reporte]
+      summary: Eliminar tipo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        '200': { description: Tipo eliminado }
+
+  /api/reportes:
+    get:
+      tags: [Reportes]
+      summary: List

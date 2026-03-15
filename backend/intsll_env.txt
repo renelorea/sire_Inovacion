@@ -1,0 +1,34 @@
+python -m venv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+
+python app.py
+
+export SENDGRID_API_KEY=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
+export SMTP_HOST=smtp.gmail.com
+export SMTP_PORT=587
+export SMTP_USER=perrillo1981@gmail.com
+export SMTP_PASS="qiuj fsca izzl hcfy"
+export EMAIL_FROM="perrillo1981@gmail.com"
+
+srv734.hstgr.io
+u893431309_incidencias
+u893431309_usercon
+NTf^C=f8
+
+# This file contains the WSGI configuration required to serve up your
+# web application at http://<your-username>.pythonanywhere.com/
+# It works by setting the variable 'application' to a WSGI handler of some
+# description.
+#
+# The below has been auto-generated for your Flask project
+
+import sys
+path = '/home/perrillo19811/backend/backend'
+if path not in sys.path:
+    sys.path.append(path)
+
+from app import app as application  # Asegúrate que 'app' es el nombre de tu objeto Flask
+import sys
