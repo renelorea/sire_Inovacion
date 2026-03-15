@@ -1,0 +1,244 @@
+:root {
+  /* Paleta Verde y Gris */
+  --primary-green: #28a745;
+  --primary-green-dark: #218838;
+  --primary-green-light: #34ce57;
+  --secondary-gray: #6c757d;
+  --secondary-gray-dark: #545b62;
+  --secondary-gray-light: #adb5bd;
+  --success: #20c997;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light-green: #d4edda;
+  --dark-green: #155724;
+  --light-gray: #f8f9fa;
+  --dark-gray: #343a40;
+}
+
+/* Override Bootstrap primary color */
+.btn-primary,
+.bg-primary {
+  background-color: var(--primary-green) !important;
+  border-color: var(--primary-green) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--primary-green-dark) !important;
+  border-color: var(--primary-green-dark) !important;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-gray) !important;
+  border-color: var(--secondary-gray) !important;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--secondary-gray-dark) !important;
+  border-color: var(--secondary-gray-dark) !important;
+}
+
+/* Navbar styling */
+.navbar-green {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%) !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-green .navbar-brand {
+  color: white !important;
+  font-weight: 600;
+}
+
+.navbar-green .nav-link {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color 0.2s ease;
+}
+
+.navbar-green .nav-link:hover {
+  color: white !important;
+}
+
+.navbar-green .dropdown-toggle::after {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Card styling */
+.card-green {
+  border-left: 4px solid var(--primary-green);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.card-gray {
+  border-left: 4px solid var(--secondary-gray);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-gray:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+/* Button styling */
+.btn-green {
+  background-color: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+.btn-green:hover {
+  background-color: var(--primary-green-dark);
+  border-color: var(--primary-green-dark);
+  color: white;
+}
+
+.btn-green-soft {
+  background-color: #4a6b47;
+  border-color: #4a6b47;
+  color: white;
+  opacity: 1;
+}
+
+.btn-green-soft:hover {
+  background-color: #3d5a3a;
+  border-color: #3d5a3a;
+  color: white;
+  opacity: 1;
+}
+
+.btn-gray {
+  background-color: var(--secondary-gray);
+  border-color: var(--secondary-gray);
+  color: white;
+}
+
+.btn-gray:hover {
+  background-color: var(--secondary-gray-dark);
+  border-color: var(--secondary-gray-dark);
+  color: white;
+}
+
+/* Table styling */
+.table-green thead {
+  background-color: var(--primary-green);
+  color: white;
+}
+
+.table-gray thead {
+  background-color: var(--secondary-gray);
+  color: white;
+}
+
+/* Badge styling */
+.badge-green {
+  background-color: var(--primary-green) !important;
+}
+
+.badge-gray {
+  background-color: var(--secondary-gray) !important;
+}
+
+/* Alert styling */
+.alert-green {
+  background-color: var(--light-green);
+  border-color: var(--primary-green);
+  color: var(--dark-green);
+}
+
+/* Form styling */
+.form-control:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+
+/* Background patterns */
+.bg-gradient-green {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-green-dark) 100%);
+}
+
+.bg-gradient-gray {
+  background: linear-gradient(135deg, var(--secondary-gray) 0%, var(--secondary-gray-dark) 100%);
+}
+
+/* Login page specific */
+.login-container {
+  background: linear-gradient(135deg, var(--light-gray) 0%, var(--secondary-gray-light) 100%);
+  min-height: 100vh;
+}
+
+.login-card {
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  border: none;
+  border-radius: 12px;
+}
+
+/* Dashboard con imagen de fondo */
+.dashboard-background {
+  background-image: url('./images/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+.dashboard-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.85);
+  z-index: 1;
+}
+
+.dashboard-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Dashboard cards */
+.dashboard-card {
+  border: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.card-icon-green {
+  color: var(--primary-green);
+}
+
+.card-icon-gray {
+  color: var(--secondary-gray);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+  
+  .card {
+    margin-bottom: 1rem;
+  }
+}
